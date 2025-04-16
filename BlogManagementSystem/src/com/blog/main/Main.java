@@ -10,7 +10,7 @@ public class Main {
     private static BlogDAO blogDAO = new BlogDAO();
     private static CategoryDAO categoryDAO = new CategoryDAO();
     private static User currentUser = null;
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner sc= new Scanner(System.in);
 
     public static void main(String[] args) {
         showWelcomeScreen();
@@ -18,19 +18,17 @@ public class Main {
 
     private static void showWelcomeScreen() {
         while (true) {
-            System.out.println("\n| Welcome to Blogging App |");
-            System.out.println("|------------------------|");
-            System.out.println("| 0. Exit               |");
-            System.out.println("| 1. Login              |");
-            System.out.println("| 2. Register           |");
-            System.out.println("|------------------------|");
+            System.out.println("Welcome to Blogging App");
+            System.out.println("0.Exit");
+            System.out.println("1. Login");
+            System.out.println("2. Register");
             System.out.print("Enter your choice: ");
 
             int choice = getIntInput();
 
             switch (choice) {
                 case 0:
-                    System.out.println("Exiting application...");
+                    System.out.println("Exiting application");
                     System.exit(0);
                     break;
                 case 1:
@@ -40,23 +38,22 @@ public class Main {
                     registerUser();
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Invalid choice");
             }
         }
     }
 
     private static void loginUser() {
-        System.out.println("\n| Login |");
-        System.out.println("|----------------|");
+        System.out.println("Login");
         System.out.print("Email: ");
-        String email = scanner.nextLine();
+        String email = sc.nextLine();
         System.out.print("Password: ");
-        String password = scanner.nextLine();
+        String password = sc.nextLine();
 
         User user = userDAO.getUserByEmail(email);
         if (user != null && user.getPassword().equals(password)) {
             currentUser = user;
-            System.out.println("\nLogin successful! Welcome, " + user.getFullName());
+            System.out.println("Login successful! Welcome, " + user.getFullName());
             showMainMenu();
         } else {
             System.out.println("Invalid email or password. Please try again.");
@@ -64,16 +61,15 @@ public class Main {
     }
 
     private static void registerUser() {
-        System.out.println("\n| Registration |");
-        System.out.println("|----------------|");
+        System.out.println("Registration");
         System.out.print("Full Name: ");
-        String fullName = scanner.nextLine();
+        String fullName = sc.nextLine();
         System.out.print("Email: ");
-        String email = scanner.nextLine();
+        String email = sc.nextLine();
         System.out.print("Password: ");
-        String password = scanner.nextLine();
+        String password = sc.nextLine();
         System.out.print("Phone No: ");
-        String phoneNo = scanner.nextLine();
+        String phoneNo = sc.nextLine();
 
         User user = new User(0, fullName, email, password, phoneNo);
         if (userDAO.addUser(user)) {
@@ -85,19 +81,17 @@ public class Main {
 
     private static void showMainMenu() {
         while (currentUser != null) {
-            System.out.println("\n| Blogging App |");
-            System.out.println("| Welcome " + currentUser.getFullName() + " |");
-            System.out.println("|----------------|");
-            System.out.println("| 1. Add Category   |");
-            System.out.println("| 2. Show Categories|");
-            System.out.println("| 3. All Blogs      |");
-            System.out.println("| 4. My Blogs       |");
-            System.out.println("| 5. Add Blog       |");
-            System.out.println("| 6. Edit Blog      |");
-            System.out.println("| 7. Search Blog    |");
-            System.out.println("| 8. Delete Blog    |");
-            System.out.println("| 9. Logout         |");
-            System.out.println("|----------------|");
+            System.out.println("Blogging App");
+            System.out.println("Welcome " + currentUser.getFullName() + " |");
+            System.out.println("1.Add Category");
+            System.out.println("2.Show Categories");
+            System.out.println("3.All Blogs");
+            System.out.println("4.My Blogs");
+            System.out.println("5.Add Blog");
+            System.out.println("6.Edit Blog");
+            System.out.println("7. Search Blog");
+            System.out.println("8.Delete Blog");
+            System.out.println("9.Logout");
             System.out.print("Enter your choice: ");
 
             int choice = getIntInput();
@@ -212,9 +206,9 @@ public class Main {
         int categoryId = getIntInput();
         
         System.out.print("Enter blog title: ");
-        String title = scanner.nextLine();
+        String title = sc.nextLine();
         System.out.print("Enter blog content: ");
-        String content = scanner.nextLine();
+        String content = sc.nextLine();
 
         Blog blog = new Blog(0, title, content, currentUser.getId(), categoryId);
         if (blogDAO.addBlog(blog)) {
@@ -234,7 +228,7 @@ public class Main {
         System.out.println("\n| Search Blogs |");
         System.out.println("|---------------|");
         System.out.print("Enter search term: ");
-        String term = scanner.nextLine();
+        String term = sc.nextLine();
         System.out.println("Search functionality to be implemented");
     }
 
@@ -247,7 +241,7 @@ public class Main {
     private static int getIntInput() {
         while (true) {
             try {
-                return Integer.parseInt(scanner.nextLine());
+                return Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
                 System.out.print("Invalid input. Please enter a number: ");
             }

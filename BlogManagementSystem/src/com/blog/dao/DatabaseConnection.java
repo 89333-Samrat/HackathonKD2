@@ -23,6 +23,4 @@ public class DatabaseConnection {
     }
 }
 
-/*GRANT ALL PRIVILEGES ON blog_system.* TO 'root'@'localhost';
-FLUSH PRIVILEGES;*/
 

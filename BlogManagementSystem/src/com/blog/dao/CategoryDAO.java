@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CategoryDAO {
     public boolean addCategory(Category category) {
-        String sql = "INSERT INTO categories (name) VALUES (?)";
+        String sql ="INSERT INTO categories (name) VALUES (?)";
         
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
